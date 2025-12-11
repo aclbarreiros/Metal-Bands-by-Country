@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Metal Bands by Country</title>
+
+  <!-- D3 + TopoJSON -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+
+  <!-- Tailwind para utilidades rápidas de layout -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Painel lateral de filtros -->
+    <aside class="sidebar">
+      <section>
+      <div>
+        <h2>Search Band</h2>
+        <form id="search-form" autocomplete="off">
+          <input id="band-search" type="search" placeholder="Type a band name…" />
+        </form>
+      </div>
+      </section>
+
+      <section>
+        <h2>Decade</h2>
+        <div class="control-group">
+          <label>
+            <input type="radio" name="decade" value="All" checked />
+            All
+          </label>
+          <label>
+            <input type="radio" name="decade" value="1960" />
+            1960s
+          </label>
+          <label>
+            <input type="radio" name="decade" value="1970" />
+            1970s
+          </label>
+          <label>
+            <input type="radio" name="decade" value="1980" />
+            1980s
+          </label>
+          <label>
+            <input type="radio" name="decade" value="1990" />
+            1990s
+          </label>
+          <label>
+            <input type="radio" name="decade" value="2000" />
+            2000s
+          </label>
+          <label>
+            <input type="radio" name="decade" value="2010" />
+            2010s
+          </label>
+        </div>
+      </section>
+
+      <section>
+        <h2>Subgenre</h2>
+        <select id="subgenre-select">
+          <!-- Opçoes preenchidas via JS -->
+        </select>
+        <p class="hint">Color intensity = number of bands.</p>
+      </section>
+
+
+      <section>
+        <h2>Band Status</h2>
+        <div class="control-group">
+          <label>
+            <input type="radio" name="status" value="all" checked />
+            All
+          </label>
+          <label>
+            <input type="radio" name="status" value="active" />
+            Active
+          </label>
+          <label>
+            <input type="radio" name="status" value="inactive" />
+            Inactive
+          </label>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Mapa -->
+    <main class="map-wrapper">
+      
+<!-- Toolbar com filtros + reset -->
+      
+<main class="map-wrapper">
+<div class="map-header">
+  <div class="header-left">
+    <button id="reset-btn" class="btn-reset" type="button" title="Reset all filters (R)">
+      <span class="btn-icon">↺</span>
+      <span class="btn-label">Reset all</span>
+    </button>
+  </div>
+
+<div class="header-center">
+    <h1 class="title">Metal Bands by Country</h1>
+    <p class="subtitle">Filter by decade, subgenre and band status to explore the scene.</p>
+  </div>
+
+  <div class="header-right">
+  <span id="active-filters" class="filters-badge" aria-label="Active filters count" hidden></span>
+  </div>
+</div>
+
+     <svg id="map"></svg>
+      <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
+      <div id="modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+          <header class="modal-header">
+            <h3 class="modal-title">Detalhes</h3>
+            <button type="button" class="modal-close" aria-label="Close modal">×</button>
+          </header>
+          <div class="modal-controls"></div>
+          <div class="modal-body"></div>
+        </div>
+      </div>
+      <div class="footer-note">
+        Data: metal_bands_2017.csv Carolina Barreiros & Fernanda Ribas VI 
+      </div>
+    </main>
+  </div>
+  
+  <div id="modal" class="modal hidden" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <header class="modal-header">
+        <h3 id="modal-title" class="modal-title">Detalhes</h3>
+        <button class="modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="modal-controls"></div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+<script src="maps.js"></script>
+</body>
+</html>
